@@ -1,6 +1,9 @@
 import org.junit.Assert;
 import org.junit.Test;
 
+import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
+
 public class TestMoodAnalyser {
 
     @Test
@@ -12,12 +15,6 @@ public class TestMoodAnalyser {
     @Test
     public void givenMessage_WhenResponse_ThenHappy() throws MoodAnalyserException {
         MoodAnalyzer MoodAnalyser = new MoodAnalyzer("I am in any Mood");
-        Assert.assertEquals("HAPPY",MoodAnalyser.analyseMood());
-    }
-
-    @Test
-    public void givenNull_WhenNull_ThenThrowException() throws MoodAnalyserException{
-        MoodAnalyzer MoodAnalyser = new MoodAnalyzer(null);
         Assert.assertEquals("HAPPY",MoodAnalyser.analyseMood());
     }
 
@@ -45,7 +42,12 @@ public class TestMoodAnalyser {
         }
     }
 
-
-
-
+    @Test
+    public void givenObject_WhenEquals_ThenTrue() throws MoodAnalyserException {
+        MoodAnalyzer MoodAnalyser = new MoodAnalyzer();
+        Constructor constructor = MoodAnalyserFactory.getConstructor("MoodAnalyzer");
+        MoodAnalyzer moodAnalyserObject = MoodAnalyserFactory.createMoodAnalyserObject(constructor);
+        boolean result = MoodAnalyser.equals(moodAnalyserObject);
+        Assert.assertTrue("true",result);
+    }
 }
