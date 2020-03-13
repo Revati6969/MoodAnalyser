@@ -28,14 +28,14 @@ public class MoodAnalyserFactory {
         return null;
     }
 
-    public static Object invokeMethod(Object moodAnalyserObject, String analyseMood) {
+    public static Object invokeMethod(Object moodAnalyserObject, String analyseMood) throws MoodAnalyserException {
         try {
             Class objectClass = moodAnalyserObject.getClass();
             Method moodMethod = objectClass.getMethod(analyseMood);
             Object result = moodMethod.invoke(moodAnalyserObject);
             return result;
         } catch (NoSuchMethodException e) {
-            e.printStackTrace();
+            throw new MoodAnalyserException("Method not found",MoodAnalyserException.UserDefinedDataType.NO_SUCH_METHOD);
         } catch (IllegalAccessException e) {
             e.printStackTrace();
         } catch (InvocationTargetException e) {
