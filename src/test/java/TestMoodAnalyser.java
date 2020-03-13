@@ -3,25 +3,35 @@ import org.junit.Test;
 
 public class TestMoodAnalyser {
 
-    MoodAnalyzer MoodAnalyser=new MoodAnalyzer();
-
     @Test
-    public void givenMessage_WhenResponse_ThenSad() {
-        String result=MoodAnalyser.analyseMood("I am in Sad Mood");
-        Assert.assertEquals("SAD",result);
+    public void givenMessage_WhenResponse_ThenSad() throws MoodAnalyserException {
+        MoodAnalyzer MoodAnalyser = new MoodAnalyzer("I am in Sad Mood");
+        Assert.assertEquals("SAD",MoodAnalyser.analyseMood());
     }
 
     @Test
-    public void givenMessage_WhenResponse_ThenHappy() {
-        String result1=MoodAnalyser.analyseMood("I am in Any Mood");
-        Assert.assertEquals("HAPPY",result1);
+    public void givenMessage_WhenResponse_ThenHappy() throws MoodAnalyserException {
+        MoodAnalyzer MoodAnalyser = new MoodAnalyzer("I am in any Mood");
+        Assert.assertEquals("HAPPY",MoodAnalyser.analyseMood());
     }
 
     @Test
-    public void givenNull_WhenResponse_ThenHappy() {
-        String result1=MoodAnalyser.analyseMood(null);
-        Assert.assertEquals("HAPPY",result1);
+    public void givenNull_WhenNull_ThenThrowException() throws MoodAnalyserException{
+        MoodAnalyzer MoodAnalyser = new MoodAnalyzer(null);
+        Assert.assertEquals("HAPPY",MoodAnalyser.analyseMood());
     }
+
+    @Test
+    public void givenMessage_WhenNull_ThenShouldReturnCustomException() {
+        try {
+         MoodAnalyzer MoodAnalyser = new MoodAnalyzer(null);
+            MoodAnalyser.analyseMood();
+        }
+        catch(MoodAnalyserException e) {
+            Assert.assertEquals(MoodAnalyserException.UserDefinedDataType.NULL_EXCEPTION,e.userDefinedObject);
+        }
+    }
+
 
 
 
