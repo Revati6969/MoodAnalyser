@@ -32,6 +32,19 @@ public class TestMoodAnalyser {
         }
     }
 
+    @Test
+    public void GivenEmptyMessage_ShouldReturn_EmptyMoodException()
+    {
+        try{
+            MoodAnalyzer MoodAnalyser = new MoodAnalyzer("");
+            MoodAnalyser.analyseMood();
+        }
+        catch (MoodAnalyserException e)
+        {
+            Assert.assertEquals(MoodAnalyserException.UserDefinedDataType.EMPTY_EXCEPTION,e.userDefinedObject);
+        }
+    }
+
 
 
 

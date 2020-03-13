@@ -21,7 +21,8 @@ public class MoodAnalyzer {
                 return "SAD";
             else
                 return "HAPPY";
-        }  catch (NullPointerException npe)
+        }
+        catch (NullPointerException npe)
             {
                 throw new MoodAnalyserException("Mood should not be null",MoodAnalyserException.UserDefinedDataType.NULL_EXCEPTION);
             }
