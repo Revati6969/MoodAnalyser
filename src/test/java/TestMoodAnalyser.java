@@ -67,4 +67,13 @@ public class TestMoodAnalyser {
             Assert.assertEquals(MoodAnalyserException.UserDefinedDataType.NO_SUCH_METHOD,e.userDefinedObject);
         }
     }
+
+    @Test
+    public void givenObject_WhenEqualsWithParameter_ThenTrue() throws MoodAnalyserException {
+        MoodAnalyzer MoodAnalyser = new MoodAnalyzer("Hello");
+        Constructor constructor = MoodAnalyserFactory.getConstructor("MoodAnalyzer",String.class);
+        MoodAnalyzer moodAnalyserObject = MoodAnalyserFactory.createMoodAnalyserObject(constructor,"Hello");
+        boolean result = MoodAnalyser.equals(moodAnalyserObject);
+        Assert.assertTrue("true",result);
+    }
 }
