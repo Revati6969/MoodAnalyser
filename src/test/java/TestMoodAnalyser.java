@@ -76,4 +76,13 @@ public class TestMoodAnalyser {
         boolean result = MoodAnalyser.equals(moodAnalyserObject);
         Assert.assertTrue("true",result);
     }
+
+    @Test
+    public void givenClassWithParameter_WhenWrong_ThenReturnClassNotFound() {
+        try {
+            MoodAnalyserFactory.getConstructor("Moodanalyser",String.class);
+        } catch (MoodAnalyserException e) {
+            Assert.assertEquals(MoodAnalyserException.UserDefinedDataType.NO_SUCH_CLASS,e.userDefinedObject);
+        }
+    }
 }
