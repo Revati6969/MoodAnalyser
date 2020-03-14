@@ -54,7 +54,7 @@ public class MoodAnalyserFactory {
         } catch (NoSuchFieldException e) {
            throw new MoodAnalyserException("Field not found",MoodAnalyserException.UserDefinedDataType.NO_SUCH_FIELD);
         } catch (IllegalAccessException e) {
-            e.printStackTrace();
+           throw new MoodAnalyserException("Message should not be null",MoodAnalyserException.UserDefinedDataType.ILLEGAL_ACCESS_EXCEPTION);
         }
     }
 }
