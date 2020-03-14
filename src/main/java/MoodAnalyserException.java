@@ -4,7 +4,8 @@ public class MoodAnalyserException extends Exception{
         NULL_EXCEPTION,
         EMPTY_EXCEPTION,
         NO_SUCH_CLASS,
-        NO_SUCH_METHOD
+        NO_SUCH_METHOD,
+        NO_SUCH_FIELD
     };
     UserDefinedDataType userDefinedObject;
     public MoodAnalyserException(String message, UserDefinedDataType userDefinedObject)
