@@ -1,4 +1,5 @@
 import java.lang.reflect.Constructor;
+import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
@@ -42,5 +43,18 @@ public class MoodAnalyserFactory {
             e.printStackTrace();
         }
         return null;
+    }
+
+    public static void moodAnalyserField(Object object, String message, String fieldValue) {
+
+        try {
+            Class<?> classObject = object.getClass();
+            Field declaredField = classObject.getDeclaredField(message);
+            declaredField.set(object,fieldValue);
+        } catch (NoSuchFieldException e) {
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        }
     }
 }
